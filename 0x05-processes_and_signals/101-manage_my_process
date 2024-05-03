@@ -15,12 +15,12 @@
 #Displays manage_my_process restarted
 #Displays Usage: manage_my_process {start|stop|restart}
 
-FILE="/var/run/my_process.pid"
+F="/var/run/my_process.pid"
 
 create()
 {
-    sudo touch $FILE
-    sudo bash -c "echo $$ > $FILE"
+    sudo touch $F
+    sudo bash -c "echo $$ > $F"
 }
 
 if [ "$1" == "start" ]; then
