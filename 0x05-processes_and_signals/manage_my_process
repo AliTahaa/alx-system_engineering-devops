@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Indefinitely writes "I am alive!"
+
+N=/tmp/my_process
+sudo touch $N
+
+while true;
+do
+    sudo bash -c "echo \"I am alive!\" >> $N"
+    sleep 2
+done
