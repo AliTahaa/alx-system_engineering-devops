@@ -1,5 +1,5 @@
 #!/usr/bin/pup
-# Install an especific version of flask (2.1.0)
+# Install especific version of flask (2.1.0)
 package { 'python3.8':
   ensure   => '3.8.10',
   provider => 'pip3',
