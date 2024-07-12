@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # Installs nginx web server
 
-var="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
-
 apt-get update
 apt-get upgrade
 apt-get -y install nginx
 service nginx start
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sed -i "30i $var" /etc/nginx/sites-available/default
+sed -i "/^}$/i \ \n\trewrite ^/redirect_me$ https:\/\/www.youtube.com\/watch?v=Ofm57qtjulk&t=528s permanent;" /etc/nginx/sites-available/default
 service nginx restart
