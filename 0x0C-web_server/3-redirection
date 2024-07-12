@@ -1,18 +1,12 @@
 #!/usr/bin/env bash
 # Installs nginx web server
 
+vat="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
+
 apt-get update
 apt-get upgrade
 apt-get -y install nginx
 service nginx start
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-echo "server {
-    listen 80;
-    listen [::]:80 default_server;
-    root   /etc/nginx/html;
-    index  index.html index.htm /var/www/html/index.nginx-debian.html;
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s;
-    }
-}" > /etc/nginx/sites-available/default
+sed -i "30i $var" /etc/nginx/sites-available/default
 service nginx restart
