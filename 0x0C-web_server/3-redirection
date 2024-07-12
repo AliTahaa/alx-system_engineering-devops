@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Configure Nginx server
 
-REDIRECT="\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
+REDIRECT="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
 
-sudo apt-get update
-sudo apt-get install -y nginx
-sudo chown -R ubuntu /var/www
+apt-get update
+apt-get upgrade
+apt-get -y install nginx
+service nginx start
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo sed -i "30i $REDIRECT" /etc/nginx/sites-available/default
+sudo sed -i "53i \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;" default
 sudo service nginx restart
