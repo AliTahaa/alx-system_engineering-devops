@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Configure Nginx server
 
-REDIRECT="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
+REDIRECT="\trewrite ^/redirect_me https://www.youtube.com/watch?v=Ofm57qtjulk&t=528s permanent;"
 
 sudo apt-get update
 sudo apt-get install -y nginx
