@@ -5,13 +5,14 @@ apt-get update
 apt-get upgrade
 apt-get install haproxy
 echo '
-frontend sammykingx.tech
-        bind 0:80
-        default_backend web_servers
+backend web-backend
+	balance roundrobin
+	server web-01 alitaha.tech:80 check
+	server web-02 web-02.alitaha.tech:80 check
 
-backend web_servers
-        balance roundrobin
-        server 64820-web-01 100.26.152.157:80
-        server 64820-web-02 52.86.102.6:80
+frontend http
+	bind *:80
+	mode http
+	default_backend web-backend
 ' >> /etc/haproxy/haproxy.cfg
 systemctl restart haproxy.service
