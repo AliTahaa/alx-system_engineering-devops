@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""Module for task 1"""
+""" Modul """
 
 
 def top_ten(subreddit):
-    """Queries the Reddit API and returns the top 10 hot posts
-    of the subreddit"""
+    """Queries the Reddit API and returns the top 10 hot posts"""
     import requests
 
     raw_sub_info = requests.get("https://www.reddit.com/r/{}/hot.json?limit=10"
