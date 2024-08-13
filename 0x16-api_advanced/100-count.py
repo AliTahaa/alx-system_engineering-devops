@@ -10,19 +10,19 @@ def count_words(subreddit, words, word_counts={}, after=None):
     import requests
 
     raw_sub_info = requests.get("https://www.reddit.com/r/{}/hot.json"
-                            .format(subreddit),
-                            params={"after": after},
-                            headers={"User-Agent": "My-User-Agent"},
-                            allow_redirects=False)
+                                .format(subreddit),
+                                params={"after": after},
+                                headers={"User-Agent": "My-User-Agent"},
+                                allow_redirects=False)
     if raw_sub_info.status_code != 200:
         return None
 
     info = raw_sub_info.json()
 
     hot_titles = [child.get("data").get("title")
-             for child in info
-             .get("data")
-             .get("children")]
+                  for child in info
+                  .get("data")
+                  .get("children")]
     if not hot_titles:
         return None
 
