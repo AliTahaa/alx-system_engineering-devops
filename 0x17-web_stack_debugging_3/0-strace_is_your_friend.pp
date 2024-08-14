@@ -1,6 +1,6 @@
-# fix all termintion of phpp.
+# Fixes bad `phpp` extensions.
 
-exec { 'fix_phpp':
+exec { 'fix-wordpress':
   command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
-  path    => ['/bin', '/usr/bin/', '/usr/loca/bin/'],
+  path    => '/usr/local/bin/:/bin/'
 }
