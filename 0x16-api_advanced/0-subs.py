@@ -6,15 +6,14 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Queries the Reddit API and returns number of subscribers"""
-    try:
-        raw_sub_info = requests.get(
-            "https://www.reddit.com/r/{}/about.json".format(subreddit),
-            headers={"User-Agent": "My-User-Agent-v1.0"},
-            allow_redirects=False
-        )
-        raw_sub_info.raise_for_status()  # Raise an HTTPError for bad responses
-    except requests.RequestException as e:
-        print(f"An error occurred: {e}")
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {'user-agent': 'request'}
+    response = requests.get(url, headers=headers, allow_redirects=False)
+
+    if response.status_code != 200:
         return 0
 
-    return raw_sub_info.json().get("data", {}).get("subscribers", 0)
+    data = response.json().get("data")
+    num_subs = data.get("subscribers")
+
+    return num_subs
